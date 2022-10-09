@@ -1,2 +1,3 @@
 # BulkDeleteUtil
-utility to delete files by extension, regex (soon), and others (soon)
+
+utility to delete files by file extensions, regex (soon), and others (soon)
