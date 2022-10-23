@@ -1,6 +1,7 @@
 namespace BulkDeleteUtil;
 
 using BulkDeleteUtil.Components;
+using System.ComponentModel;
 
 public class MainForm : Form {
 	public static readonly int FormWidth = 700;
@@ -17,8 +18,10 @@ public class MainForm : Form {
 
 		this.Controls.Add(l);
 		this.ClientSize = new Size(FormWidth, 600);
-		this.Text = Title;
 
+		this.Text = Title;
+		var resources = new ComponentResourceManager(typeof(MainForm));
+		this.Icon = resources.GetObject("$this.Icon") as Icon;
 		this.Controls.Add(new MainPanel());
 	}
 }
