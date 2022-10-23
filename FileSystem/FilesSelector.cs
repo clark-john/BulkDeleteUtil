@@ -13,7 +13,9 @@ public static class FilesSelector {
 				String.Concat("*", y.ToString()), 
 				isRecursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly
 			)) {
-				files.Add(x);
+				if (!files.Contains(x)) {
+					files.Add(x);
+				}
 			}
 		}
 		return files;

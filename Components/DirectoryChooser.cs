@@ -1,21 +1,30 @@
 namespace BulkDeleteUtil.Components;
 
-partial class PartialPanel {
-	FolderBrowserDialog ofd = new FolderBrowserDialog();
-	string SelectedDirectory = "";
-	Label labelDir = new Label(){
+public class DirectoryChooser : Panel {
+	private FolderBrowserDialog ofd = new FolderBrowserDialog();
+	private string SelectedDirectory = "";
+	private Label labelDir = new Label(){
 		Text = "Click to select directory",
 		BorderStyle = BorderStyle.FixedSingle,
 		Width = 500
 	};
-	public Panel initializeDirectoryChooser(){
+	public DirectoryChooser(){
 		labelDir.Click += OpenFolderDialog;
-		Panel p = new Panel(){
-			Location = new Point(20, 72),
-			Width = labelDir.Width,
-			Height = labelDir.Height
-		};
-		p.Controls.Add(labelDir);
-		return p;
+		this.Location = new Point(20, 72);
+		this.Width = labelDir.Width;
+		this.Height = labelDir.Height;
+		this.Controls.Add(labelDir);
+	}
+	public string GetSelectedDirectory() => SelectedDirectory;
+	public FolderBrowserDialog GetFolderDialog() => ofd;
+	public void SetSelectedDirectory(string selected){
+		SelectedDirectory = selected;
+		labelDir.Text = selected;
+	}
+	private void OpenFolderDialog(object? sender, EventArgs e){
+		ofd.ShowDialog();
+		if (ofd.SelectedPath != "") {
+			SetSelectedDirectory(ofd.SelectedPath);
+		}
 	}
 }

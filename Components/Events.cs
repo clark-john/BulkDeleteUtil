@@ -1,40 +1,60 @@
-namespace BulkDeleteUtil.Components;
+/*namespace BulkDeleteUtil.Components;
 
 using BulkDeleteUtil.FileSystem;
 
-partial class PartialPanel {
-	private void AddItemToExtsList(object? sender, EventArgs e){
-		string item = String.Concat(".", tb.Text);
-		if (!ExtensionsListBox.Items.Contains(item) && tb.Text != "") {
-			ExtensionsListBox.Items.Add(item);
+public class Events {
+	private ExtensionInputBox exinp;
+	private ExtensionsListBox exlbox;
+	private DirectoryChooser dchooser;
+	private Button Remove;
+	private string SelectedDirectory;
+	private int SelectedListIndex;
+	private CheckBox cb;
+
+	public Events(){
+		exinp = new ExtensionInputBox();
+		Remove = exinp.GetRemoveButton();
+		cb = exinp.GetCheckBox();
+		exlbox = new ExtensionsListBox();
+		dchooser = new DirectoryChooser();
+		SelectedDirectory = dchooser.GetSelectedDirectory();
+		SelectedListIndex = exlbox.GetSelectedListIndex();
+	}
+
+	public void AddItemToExtsList(object? sender, EventArgs e){
+		string value = exinp.GetInputBoxValue();
+		string item = String.Concat(".", value);
+		if (!exlbox.Items.Contains(item) && value != "") {
+			exlbox.Items.Add(item);
 		}
 	}
-	private void OpenFolderDialog(object? sender, EventArgs e) {
+	public void OpenFolderDialog(object? sender, EventArgs e) {
+		// var dchooser = new DirectoryChooser();
+			var ofd = dchooser.GetFolderDialog();
 		ofd.ShowDialog();
 		if (ofd.SelectedPath != "") {
-			labelDir.Text = ofd.SelectedPath;
-			SelectedDirectory = ofd.SelectedPath;
+			dchooser.SetSelectedDirectory(ofd.SelectedPath);
 		}
 	}
-	private void SelectedItemFromList(object? sender, EventArgs e){
-		if (ExtensionsListBox.SelectedIndex != -1) {
-			SelectedListIndex = ExtensionsListBox.SelectedIndex;
+	public void SelectedItemFromList(object? sender, EventArgs e){
+		if (exlbox.SelectedIndex != -1) {
+			SelectedListIndex = exlbox.SelectedIndex;
 		}
 		Remove.Enabled = true;
 	}
-	private void DisableDeleteButton(object? sender, EventArgs e){
+	public void DisableDeleteButton(object? sender, EventArgs e){
 		Remove.Enabled = false;
 	}
-	private void ListBoxLostFocus(object? sender, EventArgs e){
-		int SelectedIndex = ExtensionsListBox.SelectedIndex;
+	public void ListBoxLostFocus(object? sender, EventArgs e){
+		int SelectedIndex = exlbox.SelectedIndex;
 		if (SelectedIndex != -1) {
-			ExtensionsListBox.SetSelected(SelectedIndex, false);
+			exlbox.SetSelected(SelectedIndex, false);
 		}
 	}
-	private void DeleteItemFromExtsList(object? sender, EventArgs e){
-		int SelectedIndex = ExtensionsListBox.SelectedIndex;
+	public void DeleteItemFromExtsList(object? sender, EventArgs e){
+		int SelectedIndex = exlbox.SelectedIndex;
 		if (SelectedIndex != -1) {
-			ExtensionsListBox.Items.RemoveAt(SelectedListIndex);
+			exlbox.Items.RemoveAt(SelectedListIndex);
 			Remove.Enabled = false;			
 		} else {
 			MessageBox.Show( 
@@ -45,7 +65,7 @@ partial class PartialPanel {
 			);
 		}	
 	}
-	private void LookForCorrectInfo(object? sender, EventArgs e){
+	public void LookForCorrectInfo(object? sender, EventArgs e){
 		if (SelectedDirectory == "") {
 			MessageBox.Show(
 				"Select a directory", 
@@ -53,7 +73,7 @@ partial class PartialPanel {
 				MessageBoxButtons.OK, 
 				MessageBoxIcon.Information
 			);
-		} else if (ExtensionsListBox.Items.Count == 0) {
+		} else if (exlbox.Items.Count == 0) {
 			MessageBox.Show(
 				"Select extensions to delete", 
 				"Bulk Delete Utility", 
@@ -67,7 +87,7 @@ partial class PartialPanel {
 				joinedFilesString,
 				"\n\nDelete all of them?"
 			);
-			var files = FilesSelector.SelectFilesByExt(ExtensionsListBox.Items, SelectedDirectory, cb.Checked);
+			var files = FilesSelector.SelectFilesByExt(exlbox.Items, SelectedDirectory, cb.Checked);
 			var allFiles = files;
 			int totalFilesCount = files.Count;
 			if (files.Count < 16) {
@@ -105,3 +125,4 @@ partial class PartialPanel {
 		}
 	}
 }
+*/

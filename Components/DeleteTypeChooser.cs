@@ -1,16 +1,14 @@
 namespace BulkDeleteUtil.Components;
-partial class PartialPanel {
-  public ComboBox initializeDeleteTypeChooser(){
-    ComboBox combo = new ComboBox(){
-      Width = 150,
-      Location = new Point(530, 70)
-    };
+
+public class DeleteTypeChooser : ComboBox {
+  public DeleteTypeChooser(){
+    this.Width = 150;
+    this.Location = new Point(530, 70);
     string[] types = {"By Extension", "Regex (soon)"};
-    combo.Items.AddRange(types);
+    this.Items.AddRange(types);
     var a = new AutoCompleteStringCollection();
     a.AddRange(types);
-    combo.AutoCompleteCustomSource = a;
-    combo.SelectedText = types[0];
-    return combo;
+    this.AutoCompleteCustomSource = a;
+    this.SelectedText = types[0];
   }
 }
